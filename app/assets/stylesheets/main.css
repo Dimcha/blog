@@ -1,0 +1,13 @@
+div.error {
+    background-color: #D62131;
+    font: bold smaller sans-serif;
+}
+
+.maintable
+{
+    border-collapse:collapse;
+}
+.maintable td, th
+{
+    border:1px solid black;
+}
