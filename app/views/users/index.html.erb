@@ -4,18 +4,18 @@
 <% if @users.size > 0 %>
   <table class='maintable'>
     <th>ID</th>
+    <th>Username</th>
     <th>First name</th>
     <th>Last name</th>
-    <th>Username</th>
     <th>Email</th>
     <th>Phone</th>
 
     <% @users.each do |user| %>
       <tr>
         <td><%= user.id %></td>
+        <td><%= link_to user.username, action: "show", id: user.id %></td>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
-        <td><%= user.username %></td>
         <td><%= user.email %></td>
         <td><%= user.phone %></td>
       </tr>

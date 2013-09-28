@@ -4,12 +4,18 @@ class User < ActiveRecord::Base
   attr_accessible :username, :password, :email, :phone, :first_name, :last_name
   attr_writer :current_step
 
-  validates_uniqueness_of :username, :message => 'Username has already been taken', :if => lambda { |o| o.current_step == 'login' }
-  validates_presence_of :username, :message => 'Username cannot be blank', :if => lambda { |o| o.current_step == 'login' }
-  validates_presence_of :password, :message => 'Password cannot be blank', :if => lambda { |o| o.current_step == 'login' }
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, :message => "Wrong email format", :if => lambda { |o| o.current_step == 'contacts' }
-  validates_uniqueness_of :email, :message => 'Email already used by another user', :if => lambda { |o| o.current_step == 'contacts' }
-  validates_numericality_of :phone, :message => 'Phone number must be numeric', :if => lambda { |o| o.current_step == 'contacts' }
+  validates :username, presence: { message: 'Username cannot be blank' },
+            uniqueness: { message: 'Username has already been taken' },
+            if: lambda { |o| o.current_step == 'login' }
+  validates :password, presence: { message: 'Password cannot be blank' },
+            if: lambda { |o| o.current_step == 'login' }
+  validates :email, presence: { message: 'Email cannot be blank' },
+            uniqueness: { message: 'Email is already in use' },
+            format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: "Wrong email format"},
+            if: lambda { |o| o.current_step == 'contacts' }
+  validates :phone, presence: { message: 'Phone number cannot be blank' },
+            numericality: { message: 'Phone number must be numeric' },
+            if: lambda { |o| o.current_step == 'contacts' }
 
   def current_step
     @current_step || steps.first

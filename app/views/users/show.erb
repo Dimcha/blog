@@ -1,0 +1,33 @@
+<table class='maintable'>
+  <tr>
+    <td>ID:</td>
+    <td><%= @user.id %></td>
+  </tr>
+  <tr>
+    <td>Username:</td>
+    <td><%= @user.username %></td>
+  </tr>
+  <tr>
+    <td>Password:</td>
+    <td><%= @user.password %></td>
+  </tr>
+  <tr>
+    <td>First name:</td>
+    <td><%= @user.first_name %></td>
+  </tr>
+  <tr>
+    <td>Last name:</td>
+    <td><%= @user.last_name %></td>
+  </tr>
+  <tr>
+    <td>Email:</td>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <td>Phone:</td>
+    <td><%= @user.phone %></td>
+  </tr>
+</table>
+<br/>
+
+<%= button_to "Back", {action: "index"}, method: "get" %>
