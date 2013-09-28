@@ -60,6 +60,24 @@ describe UsersController do
         post :create, {:user => attr}, valid_session
         response.should redirect_to(:root)
       end
+
+      it "redirects to the user list on cancel" do
+        valid_session[:user_step] = "login"
+        post :create, {:user => attr, :cancel => "Cancel"}, valid_session
+        response.should redirect_to(:root)
+      end
+
+      it "redirects to the previous step on back" do
+        valid_session[:user_step] = "contacts"
+        post :create, {:user => attr, :back_button => "Back"}, valid_session
+        response.inspect.should include('"user_step"=>"details"')
+      end
+
+      it "redirects to the user next step on back" do
+        valid_session[:user_step] = "details"
+        post :create, {:user => attr}, valid_session
+        response.inspect.should include('"user_step"=>"contacts"')
+      end
     end
 
     describe "with invalid params" do
