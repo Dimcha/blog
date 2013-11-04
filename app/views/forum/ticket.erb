@@ -1,0 +1,33 @@
+Category: <%= @category.name %>
+<br/>
+Ticket: <%= @ticket.summary %>
+<br/>
+<br/>
+<table  border="1">
+  <% @comments.each do |c| %>
+    <tr>
+      <td>
+        <table>
+          <tr>
+            <td>User ID: <%= c.user_id %></td>
+          </tr>
+          <tr>
+            <td><%= c.content %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  <% end %>
+
+</table>
+<%= form_for :comment,  url: {action: 'comment_create', :id => @ticket.id} do |c| %>
+
+  <table>
+    <tr>
+      <td><%= c.text_area 'content', "class" => "input", :size => "30", :maxlength => "255"  %></td>
+    </tr>
+  </table>
+  <br/>
+  <%= submit_tag 'Create', :disable_with => 'Processing...' %>
+<%end%>
+<%= button_to "Back", {action: "ticket_list", :id => @category.id}, method: "get" %>

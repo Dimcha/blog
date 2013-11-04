@@ -40,7 +40,7 @@ describe UsersController do
   end
 
   describe "POST create" do
-    describe "with valid params" do
+    context "with valid params" do
       it "creates a new User" do
         valid_session[:user_step] = "contacts"
         expect {
@@ -80,7 +80,7 @@ describe UsersController do
       end
     end
 
-    describe "with invalid params" do
+    context "with invalid params" do
       it "assigns a newly created but unsaved user as @user" do
         valid_session[:user_step] = "contacts"
         User.any_instance.stub(:save).and_return(false)

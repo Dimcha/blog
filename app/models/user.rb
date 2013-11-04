@@ -48,3 +48,16 @@ class User < ActiveRecord::Base
     end
   end
 end
+
+=begin
+    CREATE TABLE `users` (
+      `id` INT( 11 ) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+      `username` VARCHAR( 20 ) NOT NULL,
+      `password` VARCHAR( 40 ) NOT NULL,
+      `phone` VARCHAR( 20 ) DEFAULT NULL,
+      `email` VARCHAR( 80 ) NOT NULL,
+      `first_name` VARCHAR( 20 ) DEFAULT NULL,
+      `last_name` VARCHAR( 20 ) DEFAULT NULL,
+      `created_on` INT( 11 ) UNSIGNED NOT NULL
+    ) ENGINE InnoDB;
+=end

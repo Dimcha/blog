@@ -1,0 +1,13 @@
+<%= form_for :category,  url: {action: 'category_create'} do |c| %>
+
+  <table>
+    <tr>
+      <td><%= 'Name' %>:</td>
+      <td><%= c.text_field 'name', "class" => "input", :size => "30", :maxlength => "30"  %></td>
+    </tr>
+  </table>
+
+  <br/>
+  <br/>
+  <%= submit_tag 'Create', :disable_with => 'Processing...' %>
+<%end%>

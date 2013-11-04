@@ -1,5 +1,7 @@
 <%= link_to b_add + 'Add new user', :action => "registration" %>
 <br />
+<%= link_to 'Forum Category list', :controller => "forum", :action => "categories" %>
+<br />
 <br />
 <% if @users.size > 0 %>
   <table class='maintable'>

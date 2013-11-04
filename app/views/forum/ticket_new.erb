@@ -1,0 +1,14 @@
+<%= form_for :ticket,  url: {action: 'ticket_create', :category_id => @category.id} do |t| %>
+
+  <table>
+    <tr>
+      <td><%= 'Summary' %>:</td>
+      <td><%= t.text_area 'summary', "class" => "input", :size => "30", :maxlength => "255"  %></td>
+    </tr>
+  </table>
+
+  <br/>
+  <br/>
+  <%= submit_tag 'Create', :disable_with => 'Processing...' %>
+  <%= button_to "Back", {action: "ticket_list", id: @category.id}, method: "get" %>
+<%end%>

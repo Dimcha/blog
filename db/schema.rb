@@ -13,14 +13,36 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "comments", force: true do |t|
+    t.text     "content",      null: false
+    t.integer  "ticket_id",    null: false
+    t.integer  "user_id",      null: false
+    t.datetime "comment_time", null: false
+  end
+
+  create_table "forum_categories", force: true do |t|
+    t.string   "name",           null: false
+    t.integer  "owner_id",       null: false
+    t.datetime "category_start", null: false
+  end
+
+  create_table "tickets", force: true do |t|
+    t.string   "summary",                  null: false
+    t.integer  "category_id",              null: false
+    t.column   "resolution", "enum('new','invalid','fixed','duplicate')"
+    t.datetime "ticket_start",             null: false
+    t.datetime "ticket_endtime"
+    t.datetime "last_update"
+  end
+
   create_table "users", force: true do |t|
-    t.string  "username",   limit: 20, null: false
-    t.string  "password",   limit: 40, null: false
-    t.string  "phone",      limit: 20
-    t.string  "email",      limit: 80, null: false
-    t.string  "first_name", limit: 20
-    t.string  "last_name",  limit: 20
-    t.integer "created_on",            null: false
+    t.string   "username",   limit: 20, null: false
+    t.string   "password",   limit: 40, null: false
+    t.string   "phone",      limit: 20
+    t.string   "email",      limit: 80, null: false
+    t.string   "first_name", limit: 20
+    t.string   "last_name",  limit: 20
+    t.datetime "created_on",            null: false
   end
 
 end

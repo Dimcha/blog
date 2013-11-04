@@ -1,0 +1,27 @@
+<%= link_to b_add + 'Add new category', :action => "category_new" %>
+<br/>
+<br/>
+<% if @categories.to_a.size > 0 %>
+  <table class="maintable">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Tickets</th>
+      <th>Last post by</th>
+      <th>Last updated</th>
+      <th></th>
+    </tr>
+    <% @categories.each do |c| %>
+      <tr>
+        <td><%= c.id %></td>
+        <td><%= link_to c.name, :action => "ticket_list", :id => c.id %></td>
+        <td><%= c.ticket_number %></td>
+        <td><%#= c. %></td>
+        <td><%#= c. %></td>
+        <td><%= link_to 'Delete', {:action => "category_destroy", :id => c.id}, :method => :post %></td>
+      </tr>
+    <% end %>
+  </table>
+  <br/>
+<% end %>
+<%= button_to "Back", {controller: "users", action: "index"}, method: "get" %>
